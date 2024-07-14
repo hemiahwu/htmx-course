@@ -21,7 +21,7 @@ const createHomepageTemplate = () => /*html*/`
     </div>
 
     <div class="course-list">
-      <button hx-get="/courses">显示课程</button>
+      <button hx-get="/courses" hx-swap="innerHTML" hx-target="closest div">显示课程</button>
     </div>
 
     <div class="add-course-form">
