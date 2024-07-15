@@ -1,6 +1,8 @@
 import express from 'express'
 import createHomepageTemplate from './views/index.js'
 import createListTemplate from './views/list.js'
+import COURSES_DATA from './data/data.js'
+
 
 
 
@@ -18,6 +20,13 @@ app.get("/",(req,res) => {
 
 app.get("/courses",(req,res) => {
     res.send(createListTemplate())
+})
+
+app.post("/courses",(req,res) => {
+    const {title,author} = req.body
+    const id = Math.random().toString()
+    COURSES_DATA.push({id,title,author})
+    res.send(`<li>${title},${author}</li>`)
 })
 
 

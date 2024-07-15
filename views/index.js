@@ -1,4 +1,4 @@
-const createHomepageTemplate = () => /*html*/`
+const createHomepageTemplate = () => /*html*/ `
 
 <!DOCTYPE html>
 <html>
@@ -21,22 +21,21 @@ const createHomepageTemplate = () => /*html*/`
     </div>
 
     <div class="course-list">
-      <button hx-get="/courses" hx-swap="innerHTML" hx-target="closest div">显示课程</button>
+      <button hx-get="/courses"  hx-target=".course-list">显示课程</button>
     </div>
 
     <div class="add-course-form">
       <h2>你需要什么课程?</h2>
-      <form hx-post="/courses" hx-target=".course-list ul" hx-swap="beforeend"
-        hx-on::after-request="document.querySelector('form').reset()">
+      <form>
         <input id="title" name="title" placeholder="课程标题" type="text" required />
         <input id="author" name="author" placeholder="作者" type="text" required />
-        <button>添加</button>
+        <button hx-post="/courses" hx-target=".course-list ul" hx-swap="beforeend">添加</button>
       </form>
     </div>
   </main>
 </body>
 
 </html>
-`
+`;
 
-export default createHomepageTemplate
+export default createHomepageTemplate;
