@@ -4,7 +4,7 @@ const createCourseTemplate = (course) => /*html*/ `
         <h3>${course.title}</h3>
         <p>${course.author}</p>
     </div>
-    <button>删除</button>
+    <button hx-delete="/courses/${course.id}" hx-target="closest li" hx-swap="outerHTML">删除</button>
 </li>
 `
 

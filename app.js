@@ -28,6 +28,12 @@ app.post("/courses",(req,res) => {
     res.send(createCourseTemplate({id,title,author}))
 })
 
+app.delete("/courses/:id",(req,res) => {
+    const idx = COURSES_DATA.findIndex(c => c.id === req.params.id)
+    COURSES_DATA.splice(idx,1)
+    res.send()
+})
+
 
 // listen to port
 app.listen(3000,() => {
