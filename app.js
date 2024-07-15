@@ -1,9 +1,11 @@
 import express from 'express'
 import createHomepageTemplate from './views/index.js'
 import createListTemplate from './views/list.js'
-import COURSES_DATA from './data/data.js'
-import createCourseTemplate from './views/course.js'
 
+import createCourseTemplate from './views/course.js'
+import createEditFormTemplate from './views/edit.js'
+
+import COURSES_DATA from './data/data.js'
 
 // create app
 const app = express()
@@ -33,6 +35,22 @@ app.delete("/courses/:id",(req,res) => {
     COURSES_DATA.splice(idx,1)
     res.send()
 })
+
+app.get("/course/edit/:id",(req,res) => {
+    const course = COURSES_DATA.find(c => c.id === req.params.id)
+    res.send(createEditFormTemplate(course))
+})
+
+app.put("/courses/:id",(req,res) => {
+    const {title,author} = req.body
+    const id = req.params
+    const newCourse = {id,title,author}
+    const idx = COURSES_DATA.findIndex(c => c.id === id)
+    COURSES_DATA[idx] = newCourse
+    res.send(createCourseTemplate(newCourse))
+})
+
+
 
 
 // listen to port
