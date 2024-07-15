@@ -2,8 +2,7 @@ import express from 'express'
 import createHomepageTemplate from './views/index.js'
 import createListTemplate from './views/list.js'
 import COURSES_DATA from './data/data.js'
-
-
+import createCourseTemplate from './views/course.js'
 
 
 // create app
@@ -26,7 +25,7 @@ app.post("/courses",(req,res) => {
     const {title,author} = req.body
     const id = Math.random().toString()
     COURSES_DATA.push({id,title,author})
-    res.send(`<li>${title},${author}</li>`)
+    res.send(createCourseTemplate({id,title,author}))
 })
 
 

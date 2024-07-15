@@ -29,7 +29,7 @@ const createHomepageTemplate = () => /*html*/ `
       <form>
         <input id="title" name="title" placeholder="课程标题" type="text" required />
         <input id="author" name="author" placeholder="作者" type="text" required />
-        <button hx-post="/courses" hx-target=".course-list ul" hx-swap="beforeend">添加</button>
+        <button hx-on::after-request="document.querySelector('form').reset()" hx-on:click="console.log('新课已添加',event)" hx-post="/courses" hx-target=".course-list ul" hx-swap="beforeend">添加</button>
       </form>
     </div>
   </main>
